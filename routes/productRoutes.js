@@ -1,10 +1,16 @@
-const express = require("express");
-const { createProduct, getProducts } = require("../controllers/product.controller");
-const authMiddleware = require("../middleware/auth.middleware");
+// productRoutes.js
+const express2 = require("express");
+const {
+  createProduct,
+  getProducts,
+  deductStock,            // ← was missing from routes entirely
+} = require("../controllers/product.controller");
+const authMiddleware2 = require("../middleware/auth.middleware");
 
-const router = express.Router();
+const productRouter = express2.Router();
 
-router.post("/", authMiddleware, createProduct);
-router.get("/", getProducts);
+productRouter.post("/", authMiddleware2, createProduct);
+productRouter.get("/", getProducts);
+productRouter.patch("/:id/deduct-stock", authMiddleware2, deductStock); // ← added
 
-module.exports = router;
+module.exports = productRouter;

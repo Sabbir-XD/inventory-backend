@@ -1,12 +1,18 @@
+// orderRoutes.js
 const express = require("express");
-const { createOrder, getOrders, updateOrderStatus, cancelOrder } = require("../controllers/order.controller");
+const {
+    createOrder,
+    getOrders,
+    updateOrderStatus,
+    cancelOrder,
+} = require("../controllers/order.controller");
 const authMiddleware = require("../middleware/auth.middleware");
 
-const router = express.Router();
+const orderRouter = express.Router();
 
-router.post("/", authMiddleware, createOrder);
-router.get("/", authMiddleware, getOrders);
-router.put("/:id/status", authMiddleware, updateOrderStatus);
-router.put("/:id/cancel", authMiddleware, cancelOrder);
+orderRouter.post("/", authMiddleware, createOrder);
+orderRouter.get("/", authMiddleware, getOrders);
+orderRouter.put("/:id/status", authMiddleware, updateOrderStatus);
+orderRouter.put("/:id/cancel", authMiddleware, cancelOrder);
 
-module.exports = router;
+module.exports = orderRouter;
